@@ -18,80 +18,126 @@
     <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="../static/style.css">
-    <style>
-        .wrap {
-            width: 800px;
-            margin: auto;
-        }
 
-    </style>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <!--google Fonts add-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+            rel="stylesheet"/>
+
+    <!--Font awesome 추가-->
+    <script src="https://kit.fontawesome.com/b46111274b.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
     <title>게시판</title>
 
-     <script>
-         $(document).ready(function () {
-             showPost();
-         });
+    <script>
+        $(document).ready(function () {
+            showPost();
+        });
 
-          function openClose() {
-              if ($("#postbox").css("display") == "block") {
-                    $("#postbox").hide();
-                    $("#btn-post-box").text("게시글 쓰기");
-                } else {
-                    $("#postbox").show();
-                    $("#btn-post-box").text("게시글 취소");
-                }
+        function openClose() {
+            if ($("#postbox").css("display") == "block") {
+                $("#postbox").hide();
+                $("#btn-post-box").text("게시글 쓰기");
+            } else {
+                $("#postbox").show();
+                $("#btn-post-box").text("게시글 취소");
             }
+        }
 
-          function makePost() {
-              let title = $('#post-title').val()
-              let content = $('#post-content').val()
-              {#let name = $('#name').val()#}
-              let name = 'userid'
-              $.ajax({
-                  type: "POST",
-                  url: "/api/post",
-                  data: {title_give: title, content_give: content, name_give: name},
-                  success: function (response) {
-                      alert(response["msg"]);
-                      window.location.reload();
-                  }
-              })
-          }
+        function makePost() {
+            let title = $('#post-title').val()
+            let content = $('#post-content').val()
+            {#let name = $('#name').val()#}
+            let name = 'userid'
+            $.ajax({
+                type: "POST",
+                url: "/api/post",
+                data: {title_give: title, content_give: content, name_give: name},
+                success: function (response) {
+                    alert(response["msg"]);
+                    window.location.reload();
+                }
+            })
+        }
 
-          function showPost(){
-               $.ajax({
-                    type: "GET",
-                    url: "/api/post",
-                    data: {},
-                    success: function (response) {
-                        let posts = response['all_posts']
-                        for(let i =0;i<posts.length;i++){
-                            let name = posts[i]['name']
-                            let title = posts[i]['title']
-                            let content = posts[i]['content']
+        function showPost() {
+            $.ajax({
+                type: "GET",
+                url: "/api/post",
+                data: {},
+                success: function (response) {
+                    let posts = response['all_posts']
+                    for (let i = 0; i < posts.length; i++) {
+                        let name = posts[i]['name']
+                        let title = posts[i]['title']
+                        let content = posts[i]['content']
 
-                            let temp_html = `<tr>
+                        let temp_html = `<tr>
                                                 <td>${title}</td>
                                                 <td>${content}</td>
                                                 <td>${name}</td>
                                             </tr>`
 
-                            $('#table').append(temp_html);
-
-                        }
-
+                        $('#table').append(temp_html);
 
                     }
-                })
-          }
-     </script>
+
+
+                }
+            })
+        }
+    </script>
 </head>
 <body>
 
+<section>
+<nav id="navbar">
+    <div class="navbar__logo">
+        <i class="fas fa-campground"></i>
+        <a href="#">CAMP IN</a>
+    </div>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">메인</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="posting">게시판</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="#">로그인</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="#">회원가입</a>
+        </li>
+    </ul>
 
-<div id="post-box" class="form-post, wrap" >
-    <div>
-        <table class="table">
+</nav>
+</section>
+<section id="banner1" ></section>
+<section id="post-box" >
+    <div class = "posting_box banner_title jumbotron text-center mb-0">
+        <table class="table wrap">
             <thead>
             <tr>
                 <th scope="col">제목</th>
@@ -104,11 +150,11 @@
 
             </tbody>
         </table>
- <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">게시글쓰기
-                    </button>
+        <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">게시글쓰기
+        </button>
     </div>
-    <div id="postbox" style="display:none">
-        <div class="form-group" >
+    <div id="postbox" style="display:none" class = "wrap">
+        <div class="form-group ">
             <label for="post-title">게시판 제목</label>
             <input id="post-title" class="form-control" placeholder="">
         </div>
@@ -120,7 +166,7 @@
 
         <button type="button" class="btn btn-primary" onclick="makePost()">게시글 올리기</button>
     </div>
-</div>
+</section>
 
 
 </body>
