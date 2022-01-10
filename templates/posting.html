@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <style>
+        .wrap {
+            width: 800px;
+            margin: auto;
+        }
+
+    </style>
+    <title>게시판</title>
+
+     <script>
+         $(document).ready(function () {
+             showPost();
+         });
+
+          function openClose() {
+              if ($("#postbox").css("display") == "block") {
+                    $("#postbox").hide();
+                    $("#btn-post-box").text("게시글 쓰기");
+                } else {
+                    $("#postbox").show();
+                    $("#btn-post-box").text("게시글 취소");
+                }
+            }
+
+          function makePost() {
+              let title = $('#post-title').val()
+              let content = $('#post-content').val()
+              {#let name = $('#name').val()#}
+              let name = 'userid'
+              $.ajax({
+                  type: "POST",
+                  url: "/api/post",
+                  data: {title_give: title, content_give: content, name_give: name},
+                  success: function (response) {
+                      alert(response["msg"]);
+                      window.location.reload();
+                  }
+              })
+          }
+
+          function showPost(){
+               $.ajax({
+                    type: "GET",
+                    url: "/api/post",
+                    data: {},
+                    success: function (response) {
+                        let posts = response['all_posts']
+                        for(let i =0;i<posts.length;i++){
+                            let name = posts[i]['name']
+                            let title = posts[i]['title']
+                            let content = posts[i]['content']
+
+                            let temp_html = `<tr>
+                                                <td>${title}</td>
+                                                <td>${content}</td>
+                                                <td>${name}</td>
+                                            </tr>`
+
+                            $('#table').append(temp_html);
+
+                        }
+
+
+                    }
+                })
+          }
+     </script>
+</head>
+<body>
+
+
+<div id="post-box" class="form-post, wrap" >
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">제목</th>
+                <th scope="col">내용</th>
+                <th scope="col">닉네임</th>
+                <th scope="col">날짜</th>
+            </tr>
+            </thead>
+            <tbody id='table'>
+
+            </tbody>
+        </table>
+ <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">게시글쓰기
+                    </button>
+    </div>
+    <div id="postbox" style="display:none">
+        <div class="form-group" >
+            <label for="post-title">게시판 제목</label>
+            <input id="post-title" class="form-control" placeholder="">
+        </div>
+
+        <div class="form-group">
+            <label for="post-content">내용</label>
+            <textarea id="post-content" class="form-control" rows="2"></textarea>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="makePost()">게시글 올리기</button>
+    </div>
+</div>
+
+
+</body>
+</html>
