@@ -1,0 +1,174 @@
+<!Doctype html>
+<html lang="ko">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+        <!--google Fonts add-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+            rel="stylesheet"/>
+
+        <!--Font awesome 추가-->
+        <script src="https://kit.fontawesome.com/b46111274b.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+        <title>스파르타코딩클럽 | 나홀로 메모장</title>
+
+    </head>
+
+    <section>
+        <nav id="navbar">
+            <div class="navbar__logo">
+                <i class="fas fa-campground"></i>
+                <a href="#">CAMP IN</a>
+            </div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">메인</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">게시판</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">로그인</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">회원가입</a>
+                </li>
+            </ul>
+
+        </nav>
+        <section id="banner">
+            <div class="banner_title jumbotron text-center mb-0">
+                <h1>GO CAMPING</h1>
+                {% if username %}
+                <p>안녕하세요. {{ username }}님, 여기서 캠핑을 어떨까요?</p>
+                {% else %}
+                <p>목적지에 닿아야 행복해 지는 것이 아니라 캠핑을 하는 과정에서 행복을 느낀다.</p>
+                {% endif %}
+            </div>
+        </section>
+
+           
+        <section id=search>
+            <div class="search__box item-order d-flex">
+            
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="text-white bg-dark input-group-text">지역</label>
+                    <select class="mr-3 custom-select border-right rounded-right" id="post-count">
+                        <option selected="selected">지역을 선택하세요.</option>
+                        <option value="1">경기도</option>
+                        <option value="2">강원도</option>
+                        <option value="3">충청도</option>
+                        <option value="4">경상도</option>
+                        <option value="5">전라도</option>
+                    </select>
+                    </div>
+
+                    <div class="mr-3">
+                        <input type="text" class="input__box form-control" placeholder="Search">
+                    </div>
+                    <button onclick="" type="button" class="bg-white btn ">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+            
+            </div>
+        </section>
+
+        <section class="wrap">
+            
+            <div class="container">
+                <div class="row">
+
+                    
+                    <div class="mb-2 col-4">
+                        <div class="card">
+                            <img
+                                src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
+                                alt=""
+                                class="card-img-top"/>
+                            <div class="card-body">
+                                <h5 class="card-title">Lorem</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Nullam egestas sed sem ut malesuada.</p>
+                                <a href="#" class="btn btn-primary">More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-2 col-4">
+                        <div class="card">
+                            <img src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
+                                alt="" class="card-img-top" />
+                            <div class="card-body">
+                                <h5 class="card-title">Lorem</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Nullam egestas sed sem ut malesuada.</p>
+                                <a href="#" class="btn btn-primary">More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-2 col-4">
+                        <div class="card">
+                            <img src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
+                                alt="" class="card-img-top" />
+                            <div class="card-body">
+                                <h5 class="card-title">Lorem</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Nullam egestas sed sem ut malesuada.</p>
+                                <a href="#" class="btn btn-primary">More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-2 col-4">
+                        <div class="card">
+                            <img src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
+                                alt="" class="card-img-top" />
+                            <div class="card-body">
+                                <h5 class="card-title">Lorem</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Nullam egestas sed sem ut malesuada.</p>
+                                <a href="#" class="btn btn-primary">More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-2 col-4">
+                        <div class="card">
+                            <img src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
+                                alt="" class="card-img-top" />
+                            <div class="card-body">
+                                <h5 class="card-title">Lorem</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Nullam egestas sed sem ut malesuada.</p>
+                                <a href="#" class="btn btn-primary">More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
+</body>
+
+</html>

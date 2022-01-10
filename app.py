@@ -12,8 +12,8 @@ db = client.dbusers
 
 ## HTML 화면 보여주기
 @app.route('/')
-def homework():
-    return render_template('index.html')
+def home():
+    return render_template('main.html')
 
 
 # 주문하기(POST) API
