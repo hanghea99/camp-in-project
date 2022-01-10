@@ -34,7 +34,7 @@ def make_post():
     title_receive = request.form['title_give']
     content_receive = request.form['content_give']
     name_receive = request.form['name_give']
-    # sadjas;lfkja;sdlkfjal;dksjf;lkasdjf;
+    # sadjas;lfkja;sdlkfjal;dksjf;lkaasdasdasdasdsdjf;
 
     doc = {
         'title': title_receive,
