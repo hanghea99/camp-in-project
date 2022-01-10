@@ -8,7 +8,7 @@ SECRET_KEY = getattr(settings, "SECRET_KEY", "localhost")
 from pymongo import MongoClient
 
 client = MongoClient(SECRET_KEY, 27017, authSource="admin")
-db = client.dbusers
+db = client.cp
 
 ## HTML 화면 보여주기
 @app.route('/')
@@ -17,19 +17,32 @@ def home():
 
 
 # 주문하기(POST) API
-@app.route('/order', methods=['POST'])
-def save_order():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-    return jsonify({'msg': '이 요청은 POST!'})
+@app.route('/posting')
+def posting_home():
+    return render_template('posting.html')
 
 
 # 주문 목록보기(Read) API
-@app.route('/order', methods=['GET'])
-def view_orders():
-    sample_receive = request.args.get('sample_give')
-    print(sample_receive)
-    return jsonify({'msg': '이 요청은 GET!'})
+@app.route('/api/post', methods=['GET'])
+def view_post():
+    posts = list(db.posting.find({},{'_id':False}))
+    return jsonify({'all_posts': posts})
+
+# 주문 목록보기(Read) API
+@app.route('/api/post', methods=['POST'])
+def make_post():
+    title_receive = request.form['title_give']
+    content_receive = request.form['content_give']
+    name_receive = request.form['name_give']
+
+    doc = {
+        'title': title_receive,
+        'content': content_receive,
+        'name': name_receive,
+    }
+
+    db.posting.insert_one(doc)
+    return jsonify({'msg': '저장완료~!'})
 
 
 if __name__ == '__main__':
