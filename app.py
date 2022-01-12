@@ -1,3 +1,4 @@
+import requests
 from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
@@ -42,7 +43,11 @@ def detail_page(id):
 @app.route('/posting')
 def posting_home():
     return render_template('posting.html')
-    
+
+@app.route('/posting/posting2/')
+def posting_home2():
+    return render_template('posting_2.html')
+
 
 # 주문 목록보기(Read) API
 @app.route('/api/post', methods=['GET'])
@@ -56,13 +61,13 @@ def make_post():
     title_receive = request.form['title_give']
     content_receive = request.form['content_give']
     name_receive = request.form['name_give']
-
-
+    date_receive = request.form['date_give']
 
     doc = {
         'title': title_receive,
         'content': content_receive,
         'name': name_receive,
+        'date': date_receive[8:10] + '일 ' + date_receive[16:18] + '시 ' + date_receive[19:21] + '분'
     }
 
     db.posting.insert_one(doc)
@@ -71,4 +76,3 @@ def make_post():
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
-
