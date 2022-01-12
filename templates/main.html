@@ -66,7 +66,7 @@
         <section id="banner">
             <div class="banner_title jumbotron text-center mb-0">
                 <h1>GO CAMPING</h1>
-                {% if member %}
+                {% if user_info.profile_name %}
                     <p>안녕하세요.
                         {{ user_info.profile_name }}님, 여기서 캠핑을 어떨까요?</p>
                 {% else %}

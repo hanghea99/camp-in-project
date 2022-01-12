@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,7 +17,8 @@
     <!-- 구글폰트 -->
     <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
+
+
 
     <meta
             name="viewport"
@@ -36,6 +37,9 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <script defer="defer" src="../static/js/main.js"></script>
+
 
     <!--google Fonts add-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -45,8 +49,9 @@
 
     <!--Font awesome 추가-->
     <script src="https://kit.fontawesome.com/b46111274b.js" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+
 
     <title>게시판</title>
 
@@ -54,6 +59,7 @@
         $(document).ready(function () {
             showPost();
         });
+
 
         function openClose() {
             if ($("#postbox").css("display") == "block") {
@@ -75,7 +81,7 @@
             $.ajax({
                 type: "POST",
                 url: "/api/post",
-                data: {title_give: title, content_give: content, name_give: name,date_give :date},
+                data: {title_give: title, content_give: content, name_give: name, date_give: date},
                 success: function (response) {
                     alert(response["msg"]);
                     window.location.reload();
@@ -97,7 +103,7 @@
 
 
                         let temp_html = `<tr>
-                                                <td style = "cursor:pointer;" onClick = "detailPosting('${title}','${date}'); ">${title}</td>
+                                                <td style = "cursor:pointer;" class = "comment "onClick = "detailPosting('${title}','${date}'); ">${title}</td>
                                                 <td>${name}</td>
                                                 <td>${date}</td>
 
@@ -111,10 +117,11 @@
                 }
             })
         }
-        function detailPosting(title,date){
-            console.log(title,date)
 
-             $.ajax({
+        function detailPosting(title, date) {
+            console.log(title, date)
+
+            $.ajax({
                 type: "GET",
                 url: "/api/post2",
                 data: {title_give: title, date_give: date},
@@ -123,7 +130,7 @@
                     post = (JSON.stringify(post))
 
 
-                    window.location.href=`posting/posting2/${post}`
+                    window.location.href = `posting/posting2/${post}`
 
                 }
             })
@@ -134,31 +141,31 @@
 <body>
 
 <section>
-<nav id="navbar">
-    <div class="navbar__logo">
-        <i class="fas fa-campground"></i>
-        <a href="#">CAMP IN</a>
-    </div>
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link active" href="/">메인</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="posting">게시판</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="#">로그인</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="#">회원가입</a>
-        </li>
-    </ul>
+    <nav id="navbar">
+        <div class="navbar__logo">
+            <i class="fas fa-campground"></i>
+            <a href="#">CAMP IN</a>
+        </div>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="/">메인</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="posting">게시판</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">로그인</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">회원가입</a>
+            </li>
+        </ul>
 
-</nav>
+    </nav>
 </section>
-<section id="banner1" ></section>
-<section id="post-box" >
-    <div class = "posting_box banner_title jumbotron text-center mb-0">
+<section id="banner1"></section>
+<section id="post-box">
+    <div class="posting_box banner_title jumbotron text-center mb-0">
         <table class="table wrap">
             <thead>
             <tr>
@@ -174,7 +181,7 @@
         <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">게시글쓰기
         </button>
     </div>
-    <div id="postbox" style="display:none" class = "wrap">
+    <div id="postbox" style="display:none" class="wrap">
         <div class="form-group ">
             <label for="post-title">게시판 제목</label>
             <input id="post-title" class="form-control" placeholder="">
@@ -191,4 +198,5 @@
 
 
 </body>
+
 </html>
