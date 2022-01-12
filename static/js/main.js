@@ -52,3 +52,17 @@ function searchBtn() {
 function login() {
   window.location.href = "/login";
 }
+
+// navbar 스크롤시 class 추가
+const navbar = document.querySelector("#navbar");
+console.log(navbar);
+const navbarHeight = navbar.getBoundingClientRect().height;
+console.log(navbarHeight);
+document.addEventListener("scroll", () => {
+  if (window.scrollY > navbarHeight) {
+    navbar.classList.add("navbar--dark");
+  } else {
+    navbar.classList.remove("navbar--dark");
+  }
+});
+document.addEventListener("scroll", () => {});

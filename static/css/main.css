@@ -72,7 +72,7 @@ li {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  width: 1200px;
+  width: 100%;
   margin: auto;
   justify-content: space-between;
   background-color: transparent;
@@ -88,18 +88,31 @@ li {
   color: var(--color-light-white);
 }
 
+a:hover {
+  color: var(--color-orange);
+  text-decoration: none;
+}
+.navbar__menu__item {
+  padding: 8px 12px;
+  margin: 0px 4px;
+  cursor: pointer;
+  color: var(--color-white);
+  border-radius: var(--size-border-radius);
+}
+
+.navbar__menu__item:hover {
+  border: 1px solid var(--color-white);
+  background-color: none;
+}
+#navbar.navbar--dark {
+  background-color: #343a40;
+  padding: 10px;
+}
+
 /* banner */
 #banner {
   width: 100%;
   height: 500px;
-  background: url("../img/home-background.png") center/cover no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#banner1 {
-  width: 100%;
-  height: 100px;
   background: url("../img/home-background.png") center/cover no-repeat;
   display: flex;
   justify-content: center;
@@ -110,6 +123,19 @@ li {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
+.banner_title h1:after {
+  content: " ";
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 2px;
+  background-color: #343a40;
+  margin-top: 8px;
+}
+
+/* search 박스 */
 #search {
   width: 1170px;
   height: 100px;

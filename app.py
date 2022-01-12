@@ -30,7 +30,7 @@ def get_list():
 
     return jsonify({'msg':'sucess',"documents":search_list})
 
-
+# detail페이지
 @app.route('/detail/<id>')
 def detail_page(id):
     print(id)
