@@ -71,13 +71,14 @@
             }
         }
 
-        function makePost() {
+        function makePost(user_name) {
+            console.log("1")
             let title = $('#post-title').val()
             let content = $('#post-content').val()
             {#let name = $('#name').val()#}
-            let name = 'userid'
+            let name = user_name
             let date = Date()
-            console.log(date.month)
+            console.log(user_name)
             $.ajax({
                 type: "POST",
                 url: "/api/post",
@@ -116,6 +117,9 @@
 
                 }
             })
+        }
+        function failPost(){
+            alert('로그인해주세요')
         }
 
         function detailPosting(title, date) {
@@ -191,7 +195,7 @@
             <textarea id="post-content" class="form-control" rows="2"></textarea>
         </div>
 
-        <button type="button" class="btn btn-primary" onclick="makePost()">게시글 올리기</button>
+        <button type="button" class="btn btn-primary" onclick={% if member %}makePost('{{user_info.username}}'){% else %}failPost(){% endif %} }>게시글 올리기 </button>
     </div>
 </section>
  <footer class="bg-dark text-center text-white">

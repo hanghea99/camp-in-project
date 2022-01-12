@@ -43,10 +43,6 @@ def home():
     except jwt.exceptions.DecodeError:
         return render_template('main.html',all_list=all_list ,member = False)
 
-
-
-
-
 # 검색 API  
 @app.route('/search', methods=['GET'])
 def get_list():
@@ -77,7 +73,14 @@ def login_home():
 # 주문하기(POST) API
 @app.route('/posting')
 def posting_home():
-    return render_template('posting.html')
+    try:
+        token_receive = request.cookies.get('mytoken')
+
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]})
+        return render_template('posting.html', member=True, user_info=user_info)
+    except jwt.exceptions.DecodeError:
+        return render_template('posting.html', member=False)
 
 @app.route('/posting/posting2/<post>')
 def posting_home2(post):
