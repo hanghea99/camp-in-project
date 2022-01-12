@@ -29,24 +29,22 @@ dblist=client.cplists
 @app.route('/')
 def home():
     token_receive = request.cookies.get('mytoken')
+    all_list = list(dblist.cplist.aggregate([{"$sample": {"size": 27}}, {"$unset": "_id"}]))
+
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"username": payload["id"]})
-        all_list = list(dblist.cplist.aggregate([{"$sample": {"size": 27}}, {"$unset": "_id"}]))
-        return render_template('main.html',all_list=all_list, username="WONJIN", user_info=user_info)
+        return render_template('main.html',all_list=all_list, user_info=user_info)
 
     except jwt.ExpiredSignatureError:
+        print(1)
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
-        return render_template('main.html')x
-        return render_template('main.html',all_list=all_list, username="WONJIN")
+        print(2)
+        return render_template('main.html',all_list=all_list)
 
 
 
-## main HTML 화면 보여주기
-@app.route('/')
-def home():
-    all_list = list(dblist.cplist.aggregate([{"$sample": {"size": 27}}, {"$unset": "_id"}]))
 
 # 검색 API  
 @app.route('/search', methods=['GET'])

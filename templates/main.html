@@ -21,8 +21,9 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
-        <script src = ""
-        <!--google Fonts add-->
+
+
+        <!-- google Fonts add -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
@@ -65,9 +66,9 @@
         <section id="banner">
             <div class="banner_title jumbotron text-center mb-0">
                 <h1>GO CAMPING</h1>
-                {% if username %}
+                {% if user_info.profile_name %}
                     <p>안녕하세요.
-                        {{ username }}님, 여기서 캠핑을 어떨까요?</p>
+                        {{ user_info.profile_name }}님, 여기서 캠핑을 어떨까요?</p>
                 {% else %}
                     <p>목적지에 닿아야 행복해 지는 것이 아니라 캠핑을 하는 과정에서 행복을 느낀다.</p>
                 {% endif %}
@@ -182,7 +183,6 @@
             <!-- Copyright -->
         </footer>
 
-    </footer>
 </body>
 
 </html>
