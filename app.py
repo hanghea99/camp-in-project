@@ -7,13 +7,13 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 SECRET_KEY = 'SPARTA'
 
-# import settings
-# SECRET_KEY = getattr(settings, "SECRET_KEY", "localhost")
+import settings
+SECRET_KEY = getattr(settings, "SECRET_KEY", "localhost")
 
 from pymongo import MongoClient
 
-# client = MongoClient(SECRET_KEY, 27017, authSource="admin")
-client = MongoClient('localhost', 27017)
+client = MongoClient(SECRET_KEY, 27017, authSource="admin")
+# client = MongoClient('localhost', 27017)
 db = client.cp
 
 ## HTML 화면 보여주기
