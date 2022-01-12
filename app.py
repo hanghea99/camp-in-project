@@ -3,6 +3,9 @@ import hashlib
 import datetime
 import jwt
 from datetime import datetime, timedelta
+import requests
+from flask import Flask, render_template, jsonify, request
+
 
 app = Flask(__name__)
 SECRET_KEY = 'SPARTA'
@@ -15,6 +18,8 @@ from pymongo import MongoClient
 client = MongoClient(SECRET_KEY, 27017, authSource="admin")
 # client = MongoClient('localhost', 27017)
 db = client.cp
+dblist=client.cplists
+
 
 ## HTML 화면 보여주기
 # @app.route('/')
@@ -27,13 +32,40 @@ def home():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"username": payload["id"]})
-        return render_template('main.html', user_info=user_info)
+        all_list = list(dblist.cplist.aggregate([{"$sample": {"size": 27}}, {"$unset": "_id"}]))
+        return render_template('main.html',all_list=all_list, username="WONJIN", user_info=user_info)
+
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
-        return render_template('main.html')
+        return render_template('main.html')x
+        return render_template('main.html',all_list=all_list, username="WONJIN")
 
 
+
+## main HTML 화면 보여주기
+@app.route('/')
+def home():
+    all_list = list(dblist.cplist.aggregate([{"$sample": {"size": 27}}, {"$unset": "_id"}]))
+
+# 검색 API  
+@app.route('/search', methods=['GET'])
+def get_list():
+    area_receive = request.args.get('area_give')
+    search_receive = request.args.get('search_give')
+    print(area_receive)
+    print(search_receive)
+
+    # 검색 data 추출
+    search_list =  list(dblist.cplist.find({'$and': [ {'area': {"$regex": f"{area_receive}"}} ,{'$or':[ {'title': {"$regex": f"{search_receive}"}},{'comment': {"$regex": f"{search_receive}"}},{'desc': {"$regex": f"{search_receive}"}}]}]},{'_id': False}).sort("views", -1))
+
+    return jsonify({'msg':'sucess',"documents":search_list})
+
+# detail페이지
+@app.route('/detail/<id>')
+def detail_page(id):
+    print(id)
+    return render_template('main.html')
 
 
 
@@ -48,6 +80,11 @@ def login_home():
 def posting_home():
     return render_template('posting.html')
 
+@app.route('/posting/posting2/')
+def posting_home2():
+    return render_template('posting_2.html')
+
+
 # 주문 목록보기(Read) API
 @app.route('/api/post', methods=['GET'])
 def view_post():
@@ -60,14 +97,13 @@ def make_post():
     title_receive = request.form['title_give']
     content_receive = request.form['content_give']
     name_receive = request.form['name_give']
-
-    # sadjas;lfkja;sdlkfjal;dksjf;lkasadasdsdjf;
-
+    date_receive = request.form['date_give']
 
     doc = {
         'title': title_receive,
         'content': content_receive,
         'name': name_receive,
+        'date': date_receive[8:10] + '일 ' + date_receive[16:18] + '시 ' + date_receive[19:21] + '분'
     }
 
     db.posting.insert_one(doc)
@@ -125,4 +161,3 @@ def check_dup():
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
-

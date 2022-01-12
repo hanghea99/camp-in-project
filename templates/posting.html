@@ -70,10 +70,12 @@
             let content = $('#post-content').val()
             {#let name = $('#name').val()#}
             let name = 'userid'
+            let date = Date()
+            console.log(date.month)
             $.ajax({
                 type: "POST",
                 url: "/api/post",
-                data: {title_give: title, content_give: content, name_give: name},
+                data: {title_give: title, content_give: content, name_give: name,date_give :date},
                 success: function (response) {
                     alert(response["msg"]);
                     window.location.reload();
@@ -91,12 +93,15 @@
                     for (let i = 0; i < posts.length; i++) {
                         let name = posts[i]['name']
                         let title = posts[i]['title']
-                        let content = posts[i]['content']
-
+                        let date = posts[i]['date']
+                        let temp_url = "posting/posting2/"+title
+                        console.log(temp_url)
                         let temp_html = `<tr>
-                                                <td>${title}</td>
-                                                <td>${content}</td>
+                                                <td style = "cursor:pointer;" onClick = " location.href=temp_url " onMouseOver = " window.status = 'posting/posting2' " onMouseOut = " window.status = '' "
+                       >${title}</td>
                                                 <td>${name}</td>
+                                                <td>${date}</td>
+
                                             </tr>`
 
                         $('#table').append(temp_html);
@@ -119,7 +124,7 @@
     </div>
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link active" href="#">메인</a>
+            <a class="nav-link active" href="/">메인</a>
         </li>
         <li class="nav-item">
             <a class="nav-link active" href="posting">게시판</a>
@@ -141,7 +146,6 @@
             <thead>
             <tr>
                 <th scope="col">제목</th>
-                <th scope="col">내용</th>
                 <th scope="col">닉네임</th>
                 <th scope="col">날짜</th>
             </tr>
