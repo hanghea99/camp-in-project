@@ -94,11 +94,10 @@
                         let name = posts[i]['name']
                         let title = posts[i]['title']
                         let date = posts[i]['date']
-                        let temp_url = "posting/posting2/"+title
-                        console.log(temp_url)
+
+
                         let temp_html = `<tr>
-                                                <td style = "cursor:pointer;" onClick = " location.href=temp_url " onMouseOver = " window.status = 'posting/posting2' " onMouseOut = " window.status = '' "
-                       >${title}</td>
+                                                <td style = "cursor:pointer;" onClick = "detailPosting('${title}','${date}'); ">${title}</td>
                                                 <td>${name}</td>
                                                 <td>${date}</td>
 
@@ -112,6 +111,24 @@
                 }
             })
         }
+        function detailPosting(title,date){
+            console.log(title,date)
+
+             $.ajax({
+                type: "GET",
+                url: "/api/post2",
+                data: {title_give: title, date_give: date},
+                success: function (response) {
+                    let post = response['post'][0]
+                    post = (JSON.stringify(post))
+
+
+                    window.location.href=`posting/posting2/${post}`
+
+                }
+            })
+        }
+
     </script>
 </head>
 <body>

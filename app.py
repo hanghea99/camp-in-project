@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 import hashlib
 import datetime
@@ -34,14 +36,13 @@ def home():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"username": payload["id"]})
-        return render_template('main.html',all_list=all_list, user_info=user_info)
+        return render_template('main.html',all_list=all_list, member=True ,user_info=user_info)
 
     except jwt.ExpiredSignatureError:
-        print(1)
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
-        print(2)
-        return render_template('main.html',all_list=all_list)
+        return render_template('main.html',all_list=all_list ,member = False)
+
 
 
 
@@ -78,12 +79,26 @@ def login_home():
 def posting_home():
     return render_template('posting.html')
 
-@app.route('/posting/posting2/')
-def posting_home2():
-    return render_template('posting_2.html')
+@app.route('/posting/posting2/<post>')
+def posting_home2(post):
+    post = json.loads(post)  #<post>가 json문자열로 변형 되서 넘어와 dict형태로 바꿔주기위해 json import해줌
+    name = post['name']
+    title = post['title']
+    date = post['date']
+    content = post['content']
+
+    return render_template('posting_2.html',name=name,title = title, date = date, content=content)
+
+@app.route('/api/post2', methods=['GET'])
+def posting2():
+    title_receive = request.args.get('title_give')
+    date_receive = request.args.get('date_give')
+    post=list(db.posting.find({'title':title_receive , 'date':date_receive},{'_id':False}))
+    return jsonify({'post': post})
 
 
 # 주문 목록보기(Read) API
+
 @app.route('/api/post', methods=['GET'])
 def view_post():
     posts = list(db.posting.find({},{'_id':False}))
