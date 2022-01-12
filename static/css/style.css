@@ -104,7 +104,6 @@ li {
   align-items: center;
 }
 
-
 .banner_title {
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -126,9 +125,14 @@ li {
 .search__box {
   margin: auto;
 }
-.posting_box{
-  width:1000px;
+.posting_box {
+  width: 1000px;
 
-  margin-left:auto;
+  margin-left: auto;
   margin-right: auto;
+}
+
+a > p {
+  text-decoration: none;
+  color: var(--color-black);
 }
