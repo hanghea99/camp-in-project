@@ -139,33 +139,32 @@
     </script>
 </head>
 <body>
+<nav id="navbar" class="pl-4 pr-2">
+    <div class="navbar__logo">
+        <a href="/" class="nav__brand">
+            <i class="fas fa-campground mr-2"></i>
+            CAMP IN
+        </a>
+    </div>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link navbar__menu__item" href="/">메인</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navbar__menu__item" href="posting">게시판</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navbar__menu__item" href="login">로그인</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navbar__menu__item">회원가입</a>
+        </li>
+    </ul>
+</nav>
 
-<section>
-    <nav id="navbar">
-        <div class="navbar__logo">
-            <i class="fas fa-campground"></i>
-            <a href="#">CAMP IN</a>
-        </div>
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="/">메인</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="posting">게시판</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">로그인</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">회원가입</a>
-            </li>
-        </ul>
-
-    </nav>
-</section>
 <section id="banner1"></section>
 <section id="post-box">
-    <div class="posting_box banner_title jumbotron text-center mb-0">
+    <div class="posting_box banner_title jumbotron  mb-0">
         <table class="table wrap">
             <thead>
             <tr>
@@ -195,7 +194,38 @@
         <button type="button" class="btn btn-primary" onclick="makePost()">게시글 올리기</button>
     </div>
 </section>
+ <footer class="bg-dark text-center text-white">
+            <!-- Grid container -->
+            <div class="container p-4  pb-0">
+                <!-- Section: Social media -->
+                <section class="">
+                    <p class="d-flex justify-content-center align-items-center mt-3">
+                        <span class="me-3 mr-3">Register for free
+                        </span>
+                        <button type="button" class="mr-3 btn btn-outline-light btn-rounded" onclick="login();">
+                            Sign up!
+                        </button>
 
+                        <!-- Github -->
+                        <a
+                            class="btn btn-floating m-1 btn-outline-light"
+                            style="background-color: #333333;"
+                            href="https://github.com/hanghea99/camp-in-project"
+                            target="_blank"
+                            role="button">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </p>
+                </section>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                항해99 14조 :
+                <a class="text-white" href="https://mdbootstrap.com/">CAMP IN</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
 
 </body>
 
