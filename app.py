@@ -43,6 +43,7 @@ def home():
     except jwt.exceptions.DecodeError:
         return render_template('main.html',all_list=all_list ,member = False)
 
+
 # 검색 API  
 @app.route('/search', methods=['GET'])
 def get_list():
