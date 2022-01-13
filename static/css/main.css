@@ -98,6 +98,7 @@ a:hover {
   color: var(--color-orange);
   text-decoration: none;
 }
+
 .navbar__menu__item {
   padding: 8px 12px;
   margin: 0px 4px;
@@ -130,6 +131,9 @@ a:hover {
   color: var(--color-white);
 }
 
+.banner_title > p {
+  font-size: var(--font-micro);
+}
 .banner_title h1:after {
   content: " ";
   display: block;
@@ -144,7 +148,7 @@ a:hover {
 
 /* search 박스 */
 #search {
-  max-width: 1170px;
+  max-width: 1150px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -176,11 +180,6 @@ a:hover {
   margin: 0 auto;
   border-radius: 15px;
 }
-
-/* #cards-box > div.test {
-  padding: 0 0;
-  width: 606px;
-} */
 
 .camp__card {
   max-width: 350px;
@@ -261,12 +260,6 @@ a:hover {
 
   span {
     font-size: 0.8rem;
-  }
-
-  #navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: #343a40;
   }
 
   .navbar__menu {

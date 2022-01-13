@@ -37,7 +37,7 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/main.css"> -->
     <script defer="defer" src="../static/js/main.js"></script>
 
 
@@ -143,37 +143,43 @@
     </script>
 </head>
 <body>
-    <nav id="navbar" class="pl-4 pr-2">
-        <div class="navbar_box">
-            <div class="navbar__logo">
-                <a href="/" class="nav__brand">
-                    <i class="fas fa-campground mr-2"></i>CAMP IN</a>
-            </div>
-    
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link navbar__menu__item" href="/">메인</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar__menu__item" href="posting">게시판</a>
-                </li>
-                <li class="nav-item">
-                    {% if member %}
-                    <a class="nav-link navbar__menu__item" href="#" onclick="cookieRemove()">logout</a>
-                    {% else %}
-                    <a class="nav-link navbar__menu__item" href="login">sign with us!</a>
-    
-                    {% endif %}
-                </li>
-            </ul>
+<nav id="navbar" class="pl-4 pr-2">
+    <div class="navbar_box">
+        <div class="navbar__logo">
+            <a href="/" class="nav__brand">
+                <i class="fas fa-campground mr-2"></i>CAMP IN</a>
         </div>
-    </nav>
 
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link navbar__menu__item" href="/">메인</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar__menu__item" href="posting">게시판</a>
+            </li>
+            <li class="nav-item">
+                {% if member %}
+                <a class="nav-link navbar__menu__item" href="#" onclick="cookieRemove()">logout</a>
+                {% else %}
+                <a class="nav-link navbar__menu__item" href="login">sign with us!</a>
+
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</nav>
 
 <section id="banner1"></section>
 <section id="post-box">
-    <div class="posting_box banner_title jumbotron  mb-0">
+    <div class="posting_box jumbotron  mb-0">
         <table class="table wrap">
+            <colgroup>
+                <col style="width: 50%;">
+                <col style="width: 25%;">
+                <col style="width: 25%;">
+
+            </colgroup>
+
             <thead>
             <tr>
                 <th scope="col">제목</th>
