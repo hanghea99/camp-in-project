@@ -34,15 +34,12 @@ def home():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"username": payload["id"]})
-        return render_template('main.html',all_list=all_list, user_info=user_info)
+        return render_template('main.html',all_list=all_list, member=True ,user_info=user_info)
 
     except jwt.ExpiredSignatureError:
-        print(1)
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
-        print(2)
-        return render_template('main.html',all_list=all_list)
-
+        return render_template('main.html',all_list=all_list ,member = False)
 
 
 

@@ -30,6 +30,7 @@
                 success: function (response) {
                     if (response['result'] == 'success') {
                         $.cookie('mytoken', response['token'], {path: '/'});
+                        alert("환영합니다!")
                         window.location.replace("/")
                     } else {
                         alert(response['msg'])
@@ -142,3 +143,6 @@
                 }
             });
         }
+
+
+

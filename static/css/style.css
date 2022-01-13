@@ -85,7 +85,18 @@ li {
   font-weight: var(--weight-semi-bold);
   color: var(--color-light-white);
 }
+a:hover {
+  color: var(--color-orange);
+  text-decoration: none;
+}
 
+.navbar__menu__item {
+  padding: 8px 12px;
+  margin: 0px 4px;
+  cursor: pointer;
+  color: var(--color-white);
+  border-radius: var(--size-border-radius);
+}
 /* banner */
 #banner {
   width: 100%;
@@ -104,8 +115,16 @@ li {
   align-items: center;
 }
 
-.banner_title {
-  background-color: rgba(255, 255, 255, 0.5);
+.banner_title h1:after {
+  content: " ";
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 2px;
+  background-color: #343a40;
+  margin-top: 8px;
 }
 
 #search {

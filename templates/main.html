@@ -1,187 +1,190 @@
 <!Doctype html>
 <html lang="ko">
 
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
-        <link
+    <!-- Bootstrap CSS -->
+    <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
             crossorigin="anonymous">
 
-        <!-- JS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
 
 
-        <!-- google Fonts add -->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link
+    <!-- google Fonts add -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
             rel="stylesheet"/>
 
-        <!--Font awesome 추가-->
-        <script src="https://kit.fontawesome.com/b46111274b.js" crossorigin="anonymous"></script>
+    <!--Font awesome 추가-->
+    <script src="https://kit.fontawesome.com/b46111274b.js" crossorigin="anonymous"></script>
 
-        <!-- JS, CSS 추가 -->
-        <link rel="stylesheet" type="text/css" href="../static/css/main.css">
-        <script defer="defer" src="../static/js/main.js"></script>
+    <!-- JS, CSS 추가 -->
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <script defer="defer" src="../static/js/main.js"></script>
 
-        <!-- 아이콘 -->
-        <!-- <link rel="shortcut icon" href="../static/img/favi.png"> -->
-        <title>CAMP IN</title>
+    <!-- 아이콘 -->
+    <!-- <link rel="shortcut icon" href="../static/img/favi.png"> -->
+    <title>CAMP IN</title>
 
-    </head>
-    <body>
+</head>
+<body>
 
-        <nav id="navbar" class="pl-4 pr-2">
-            <div class="navbar__logo">
-                <a href="/" class="nav__brand"><i class="fas fa-campground mr-2"></i>CAMP IN</a>
+<nav id="navbar" class="pl-4 pr-2">
+    <div class="navbar__logo">
+        <a href="/" class="nav__brand"><i class="fas fa-campground mr-2"></i>CAMP IN</a>
+    </div>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link navbar__menu__item" href="/">메인</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navbar__menu__item" href="posting">게시판</a>
+        </li>
+        <li class="nav-item">
+            {% if member %}
+                <a class="nav-link navbar__menu__item" href="#" onclick="cookieRemove()">logout</a>
+        {% else %}
+                        <a class="nav-link navbar__menu__item" href="login">sign with us!</a>
+
+        {% endif %}
+        </li>
+    </ul>
+</nav>
+
+<section id="banner">
+    <div class="banner_title jumbotron text-center mb-0">
+        <h1>GO CAMPING</h1>
+        {% if member %}
+            <p>안녕하세요.
+                {{ user_info.profile_name }}님, 여기서 캠핑을 어떨까요?</p>
+        {% else %}
+            <p>목적지에 닿아야 행복해 지는 것이 아니라 캠핑을 하는 과정에서 행복을 느낀다.</p>
+        {% endif %}
+    </div>
+</section>
+
+<section id="search">
+    <div class="search__box item-order d-flex">
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <label class="text-white bg-dark input-group-text">지역</label>
+                <select class="mr-3 custom-select border-right rounded-right" id="post-area">
+                    <option value="" selected="selected">지역을 선택하세요.</option>
+                    <option value="">전체</option>
+                    <option value="경기도">경기도</option>
+                    <option value="강원도">강원도</option>
+                    <option value="충청북도">충청북도</option>
+                    <option value="충청남도">충청남도</option>
+                    <option value="전라북도">전라북도</option>
+                    <option value="전라남도">전라남도</option>
+                    <option value="경상북도">경상북도</option>
+                    <option value="경상남도">경상남도</option>
+                    <option value="제주도">제주도</option>
+                </select>
             </div>
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link navbar__menu__item" href="/">메인</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar__menu__item" href="posting">게시판</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar__menu__item" href="login">로그인</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar__menu__item">회원가입</a>
-                </li>
-            </ul>
-        </nav>
 
-        <section id="banner">
-            <div class="banner_title jumbotron text-center mb-0">
-                <h1>GO CAMPING</h1>
-                {% if user_info.profile_name %}
-                    <p>안녕하세요.
-                        {{ user_info.profile_name }}님, 여기서 캠핑을 어떨까요?</p>
-                {% else %}
-                    <p>목적지에 닿아야 행복해 지는 것이 아니라 캠핑을 하는 과정에서 행복을 느낀다.</p>
-                {% endif %}
+            <div class="mr-3">
+                <input id="post-search" type="text" class="input__box form-control" placeholder="Search"
+                       onkeypress="if(event.keyCode==13){searchBtn();}">
             </div>
-        </section>
+            <button onclick="searchBtn();" type="button" class="bg-white btn ">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
 
-        <section id="search">
-            <div class="search__box item-order d-flex">
+    </div>
+</section>
 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <label class="text-white bg-dark input-group-text">지역</label>
-                        <select class="mr-3 custom-select border-right rounded-right" id="post-area">
-                            <option value="" selected="selected">지역을 선택하세요.</option>
-                            <option value="" >전체</option>
-                            <option value="경기도">경기도</option>
-                            <option value="강원도">강원도</option>
-                            <option value="충청북도">충청북도</option>
-                            <option value="충청남도">충청남도</option>
-                            <option value="전라북도">전라북도</option>
-                            <option value="전라남도">전라남도</option>
-                            <option value="경상북도">경상북도</option>
-                            <option value="경상남도">경상남도</option>
-                            <option value="제주도">제주도</option>
-                        </select>
-                    </div>
-
-                    <div class="mr-3">
-                        <input id="post-search" type="text" class="input__box form-control" placeholder="Search" onkeypress="if(event.keyCode==13){searchBtn();}" >
-                    </div>
-                    <button onclick="searchBtn();" type="button" class="bg-white btn ">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="wrap">
-            <div class="card__container">
-                <div id="cards-box" class="row">
-                    {% for list in all_list %}
-                        <div class="mb-4 col-4">
-                            <div class="camp__card">
-                                <a href="/detail/{{list.id}}" target="_blank">
-                                    {% if list.img == "https://www.gocamping.or.kr/img/2018/layout/noimg.jpg" %}
-                                        <img
-                                            class="card__img"
-                                            src="https://img.etoday.co.kr/pto_db/2019/10/600/20191001173327_1372185_787_590.jpg">
-                                    {% else %}
-                                        <img class="card__img" src="{{list.img}}">
-                                    {% endif %}
-                                    <div class="card__description">
-                                        <h5>{{list.title}}</h5>
-                                        <span>{{list.comment}}</span>
-                                        <p>조회수 :
-                                            {{list.views}}</p>
-                                    </div>
-                                </a>
+<section class="wrap">
+    <div class="card__container">
+        <div id="cards-box" class="row">
+            {% for list in all_list %}
+                <div class="mb-4 col-4">
+                    <div class="camp__card">
+                        <a href="/detail/{{ list.id }}" target="_blank">
+                            {% if list.img == "https://www.gocamping.or.kr/img/2018/layout/noimg.jpg" %}
+                                <img
+                                        class="card__img"
+                                        src="https://img.etoday.co.kr/pto_db/2019/10/600/20191001173327_1372185_787_590.jpg">
+                            {% else %}
+                                <img class="card__img" src="{{ list.img }}">
+                            {% endif %}
+                            <div class="card__description">
+                                <h5>{{ list.title }}</h5>
+                                <span>{{ list.comment }}</span>
+                                <p>조회수 :
+                                    {{ list.views }}</p>
                             </div>
-                        </div>
-                    {% endfor %}
-                    <!-- <div class="mb-2 col-4">
-                        <div class="card">
-                            <img
-                                src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-                                alt=""
-                                class="card-img-top"/>
-                            <div class="card-body">
-                                <h5 class="card-title">Lorem</h5>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Nullam egestas sed sem ut malesuada.</p>
-                                <a href="#" class="btn btn-primary">More</a>
-                            </div>
-                        </div>
-                    </div> -->
-
+                        </a>
+                    </div>
                 </div>
-            </div>
+            {% endfor %}
+            <!-- <div class="mb-2 col-4">
+                <div class="card">
+                    <img
+                        src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
+                        alt=""
+                        class="card-img-top"/>
+                    <div class="card-body">
+                        <h5 class="card-title">Lorem</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Nullam egestas sed sem ut malesuada.</p>
+                        <a href="#" class="btn btn-primary">More</a>
+                    </div>
+                </div>
+            </div> -->
 
-        </section>
-        <footer class="bg-dark text-center text-white">
-            <!-- Grid container -->
-            <div class="container p-4  pb-0">
-                <!-- Section: Social media -->
-                <section class="">
-                    <p class="d-flex justify-content-center align-items-center mt-3">
+        </div>
+    </div>
+
+</section>
+<footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4  pb-0">
+        <!-- Section: Social media -->
+        <section class="">
+            <p class="d-flex justify-content-center align-items-center mt-3">
                         <span class="me-3 mr-3">Register for free
                         </span>
-                        <button type="button" class="mr-3 btn btn-outline-light btn-rounded" onclick="login();">
-                            Sign up!
-                        </button>
+                <button type="button" class="mr-3 btn btn-outline-light btn-rounded" onclick="login();">
+                    Sign up!
+                </button>
 
-                        <!-- Github -->
-                        <a
-                            class="btn btn-floating m-1 btn-outline-light"
-                            style="background-color: #333333;"
-                            href="https://github.com/hanghea99/camp-in-project"
-                            target="_blank"
-                            role="button">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </p>
-                </section>
-            </div>
+                <!-- Github -->
+                <a
+                        class="btn btn-floating m-1 btn-outline-light"
+                        style="background-color: #333333;"
+                        href="https://github.com/hanghea99/camp-in-project"
+                        target="_blank"
+                        role="button">
+                    <i class="fab fa-github"></i>
+                </a>
+            </p>
+        </section>
+    </div>
 
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                항해99 14조 :
-                <a class="text-white" href="https://mdbootstrap.com/">CAMP IN</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        항해99 14조 :
+        <a class="text-white" href="https://mdbootstrap.com/">CAMP IN</a>
+    </div>
+    <!-- Copyright -->
+</footer>
 
 </body>
 
