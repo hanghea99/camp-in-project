@@ -77,22 +77,23 @@
     </ul>
 </nav>
 
-<section id="banner">
-    <div class="banner_title jumbotron ">
-        <div class="media">
-            <div class="media-body">
-                <h2 class="mt-0">제목 : {{ title }}</h2>
-                <div></div>
-                <h3>내용 : {{ content}}</h3>
-                작성자 : {{ name }}
-                작성날짜 : {{ date }}
-
-            </div>
-        </div>
-
-    </div>
+<section id="banner1">
 </section>
 
+<div class="posting_box">
+    <div class = "detailtop">
+        <h2 >{{ title }}</h2>
+        <div class ="detailleft">
+            <span>{{ name }}</span>
+            <span>{{ date }}</span>
+
+        </div>
+                <hr>
+        <div>
+            <h3>{{ content}}</h3>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

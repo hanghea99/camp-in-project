@@ -220,3 +220,10 @@ a:hover {
   background-color: var(--color-dark-white);
   margin-top: 8px;
 }
+
+.detailtop{
+  margin-top:100px
+}
+.detailleft{
+  margin-left:10px
+}
