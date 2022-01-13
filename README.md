@@ -13,6 +13,11 @@ Camp In이 제공하는 캠핑장의 위치와 정보를 확인하고, 게시판
 
 <hr>
 
+## **`👨‍💻프로젝트 기간`**
+`2022/01/10 ~ 2022/01/13`
+
+<hr>
+
 ## **`🔨기술 스택`**
 - beautifulsoup4
 - Jinja2
@@ -34,7 +39,7 @@ Camp In이 제공하는 캠핑장의 위치와 정보를 확인하고, 게시판
 <hr>
 
 ## **`📜요구사항`**
-- Serverside Rendering
+- `Serverside Rendering`
   - `장점` : 사용자가 보는 첫 페이지 로딩이 빨라집니다. 또한 HTML에 모든 컨텐츠가 담겨있기 때문에 SEO(검색엔진 최적화)에 효율적입니다.
   - `단점` : TTV(Time To View)와 TTI(Time To Interact)사이의 간격이 CSR(ClentSide Rendering)보다 큰것이 단점이며, 사용자가 상호작용시 서버에서 다시 전부 다운 받아 오기 때문에 서버 과부화되기가 쉽다는 단점도 있습니다.
-- JWT
+- `JWT`
