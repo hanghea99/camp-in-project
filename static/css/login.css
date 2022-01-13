@@ -1,28 +1,35 @@
+.button.is-sparta {
+  background-color: RGBA(255, 255, 255, 1);
+  border-color: RGBA(255, 255, 255, 1);
+  color: #fff !important;
+}
 
-        .button.is-sparta {
-            background-color: RGBA(255,255,255, 1);
-            border-color: RGBA(255,255,255, 1);
-            color: #fff !important;
-        }
+.button.is-sparta.is-outlined {
+  background-color: RGBA(255, 255, 255, 1);
+  border-color: RGBA(255, 255, 255, 1);
+  color: white !important;
+}
 
-        .button.is-sparta.is-outlined {
-            background-color: RGBA(255,255,255, 1);
-            border-color: RGBA(255,255,255, 1);
-            color: white !important;
-        }
+.help {
+  color: gray;
+}
 
+body {
+  background-color: whitesmoke;
+  min-height: 100vh;
+}
 
-        .help {
-            color: gray;
-        }
+.section {
+  padding: 1rem 1.5rem;
+  max-width: 750px;
+  margin: auto;
+}
 
-        body {
-            background-color: whitesmoke;
-            min-height: 100vh;
-        }
-
-        .section {
-            padding: 1rem 1.5rem;
-            max-width: 750px;
-            margin: auto;
-        }
+#wrapper {
+  height: auto;
+  min-height: 100%;
+}
+footer {
+  position: relative;
+  transform: translateY(-100%);
+}

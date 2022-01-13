@@ -191,7 +191,7 @@
 
             </tbody>
         </table>
-        <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">게시글쓰기
+        <button onclick="openClose()" id="btn-post-box" type="button" class="btn " style="color :white; background-color: #343a40;">게시글쓰기
         </button>
     </div>
     <div id="postbox" style="display:none" class="wrap">
@@ -205,41 +205,9 @@
             <textarea id="post-content" class="form-control" rows="2"></textarea>
         </div>
 
-        <button type="button" class="btn btn-primary" onclick={% if member %}makePost('{{user_info.username}}'){% else %}failPost(){% endif %} }>게시글 올리기 </button>
+        <button type="button" class="btn" style="color :white ;background-color: #343a40;" onclick={% if member %}makePost('{{user_info.username}}'){% else %}failPost(){% endif %} }>게시글 올리기 </button>
     </div>
 </section>
- <footer class="bg-dark text-center text-white">
-            <!-- Grid container -->
-            <div class="container p-4  pb-0">
-                <!-- Section: Social media -->
-                <section class="">
-                    <p class="d-flex justify-content-center align-items-center mt-3">
-                        <span class="me-3 mr-3">Register for free
-                        </span>
-                        <button type="button" class="mr-3 btn btn-outline-light btn-rounded" onclick="login();">
-                            Sign up!
-                        </button>
-
-                        <!-- Github -->
-                        <a
-                            class="btn btn-floating m-1 btn-outline-light"
-                            style="background-color: #333333;"
-                            href="https://github.com/hanghea99/camp-in-project"
-                            target="_blank"
-                            role="button">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </p>
-                </section>
-            </div>
-
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                항해99 14조 :
-                <a class="text-white" href="https://mdbootstrap.com/">CAMP IN</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
 
 </body>
 
