@@ -1,0 +1,148 @@
+<!Doctype html>
+<html lang="ko">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+        <!-- google Fonts add -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+            rel="stylesheet"/>
+
+        <!--Font awesome 추가-->
+        <script src="https://kit.fontawesome.com/b46111274b.js" crossorigin="anonymous"></script>
+
+        <!-- JS, CSS 추가 -->
+        <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/detail.css">
+
+        <script defer="defer" src="../static/js/main.js"></script>
+
+        <!-- 아이콘 -->
+        <!-- <link rel="shortcut icon" href="../static/img/favi.png"> -->
+        <title>CAMP IN</title>
+
+    </head>
+
+    <body>
+
+        <nav id="navbar" class="pl-4 pr-2">
+            <div class="navbar__logo">
+                <a href="/" class="nav__brand">
+                    <i class="fas fa-campground mr-2"></i>CAMP IN</a>
+            </div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link navbar__menu__item" href="/">메인</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar__menu__item" href="posting">게시판</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar__menu__item" href="login">로그인</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar__menu__item">회원가입</a>
+                </li>
+            </ul>
+        </nav>
+
+        <section id="detail__banner">
+            <div class="detail__title jumbotron text-center mb-0">
+                <h1>{{target_row.title}}</h1>
+                <!-- <h4> <p>{{target_row.comment}}</p> </h4> -->
+            </div>
+
+        </section>
+
+        <section id="detail__container">
+            <div class="detail__box">
+                <div class='detail__img'>
+                    {% if target_row.img == "https://www.gocamping.or.kr/img/2018/layout/noimg.jpg" %}
+                        <img
+                            class="card__img"
+                            src="https://static.wixstatic.com/media/fce6e3_bd3fa7fa08a24f8cb445b2432d18738c~mv2.jpg/v1/fill/w_750,h_428,al_c,q_90/fce6e3_bd3fa7fa08a24f8cb445b2432d18738c~mv2.jpg">
+                    {% else %}
+                        <img class="card__img" src="{{target_row.img}}">
+                    {% endif %}
+                </div>
+                <div class='detail__info'>
+                    <table class="table table-striped mb-4">
+                        <colgroup>
+                            <col style="width: 30%;">
+                            <col style="width: 70%;">
+                        </colgroup>
+
+                        <tbody>
+                            <tr>
+                                <th>이름</th>
+                                <td>{{target_row.title}}</td>
+                            </tr>
+                            <tr>
+                                <th>소개</th>
+                                <td>{{target_row.comment}}</td>
+                            </tr>
+                            <tr>
+                                <th>주소</th>
+                                <td>{{target_row.address}}</td>
+                            </tr>
+                            <tr>
+                                <th>전화번호</th>
+                                <td>{{target_row.phone}}</td>
+                            </tr>
+                            <tr>
+                                <th>캠핑장 환경</th>
+                                <td>{{target_row.camp_env}}</td>
+                            </tr>
+                            <tr>
+                                <th>캠핑장 유형</th>
+                                <td>{{target_row.camp_type}}</td>
+                            </tr>
+                            <tr>
+                                <th>조회수</th>
+                                <td>{{target_row.views}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                   
+                </div>
+                
+            </div>
+            <div class='detail__desc'>
+                <table class="table table-striped mb-4 mt-4">
+                    <tbody>
+                        <tr>
+                            <th>캠핑장 소개</th>
+                        </tr>
+                        <tr>
+                            <td>{{target_row.desc}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <!-- <section id="reviews">
+
+        </section> -->
+    </body>
+
+</html>
