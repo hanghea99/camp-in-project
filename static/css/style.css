@@ -55,15 +55,14 @@ li {
   list-style: none;
 }
 
-.comment {
-  color: blue;
-  font-weight: bold;
-}
 .wrap {
   width: 1200px;
   margin: auto;
 }
-
+.comment {
+  color: blue;
+  font-weight: bold;
+}
 /* Navbar */
 
 #navbar {
