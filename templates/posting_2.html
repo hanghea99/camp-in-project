@@ -1,12 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <!--google Fonts add-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+            rel="stylesheet"/>
+
+    <!--Font awesome 추가-->
+    <script src="https://kit.fontawesome.com/b46111274b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+    <script defer="defer" src="../../static/js/main.js"></script>
+
+
     <title>게시판</title>
+
 </head>
 <body>
-<h1>
+<nav id="navbar" class="pl-4 pr-2">
+    <div class="navbar__logo">
+        <a href="/" class="nav__brand">
+            <i class="fas fa-campground mr-2"></i>
+            CAMP IN
+        </a>
+    </div>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link navbar__menu__item" href="/">메인</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navbar__menu__item" href="/posting">게시판</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navbar__menu__item" href="/login">로그인</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navbar__menu__item">회원가입</a>
+        </li>
+    </ul>
+</nav>
 
-</h1>
+<section id="banner1">
+</section>
+
+<div class="posting_box">
+    <div class = "detailtop">
+        <h2 >{{ title }}</h2>
+        <div class ="detailleft">
+            <span>{{ name }}</span>
+            <span>{{ date }}</span>
+
+        </div>
+                <hr>
+        <div>
+            <h3>{{ content}}</h3>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

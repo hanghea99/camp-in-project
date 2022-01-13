@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 import hashlib
 import datetime
@@ -44,7 +46,6 @@ def home():
 
 
 
-
 # 검색 API  
 @app.route('/search', methods=['GET'])
 def get_list():
@@ -81,16 +82,38 @@ def login_home():
     return render_template('login.html')
 
 # 주문하기(POST) API
-@app.route('/posting')
+@app.route('/posting') # 게시판페이지를 보여주기위한라우트
 def posting_home():
-    return render_template('posting.html')
+    try:
+        token_receive = request.cookies.get('mytoken') # 토큰을 받았다면
 
-@app.route('/posting/posting2/')
-def posting_home2():
-    return render_template('posting_2.html')
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]})
+        return render_template('posting.html', member=True, user_info=user_info) #정상적으로 로그인되어있다면 게시판에 글쓰기 권한을 주기위해 JINJA2로 로그인이 되어있다면 member가 True로 로그인되어있는 user_info와함께 client쪽으로 전해지게 됨
+    except jwt.exceptions.DecodeError:
+        return render_template('posting.html', member=False) # 로그인이 되어있지 않다면 즉 가지고 있는 쿠키에 대해서 오류가 나온다면 권한을 주지 않기 위해 member을 False로 전해줌
+
+@app.route('/posting/posting2/<post>') #게시판내에 글 하나를 정해서 보기 위한 페이지를 위한 라우트
+def posting_home2(post):
+    post = json.loads(post)  #<post>가 json문ㄱ이랑자열로 변형 되서 넘어와 dict형태로 바꿔주기위해 json import해줌
+    name = post['name']
+    title = post['title']
+    date = post['date']
+    content = post['content']
+
+    return render_template('posting_2.html',name=name,title = title, date = date, content=content)
+
+@app.route('/api/post2', methods=['GET'])  #db에서 post정보를 가지고 오기위한 API
+def posting2():
+    title_receive = request.args.get('title_give')
+    date_receive = request.args.get('date_give')
+    post=list(db.posting.find({'title':title_receive , 'date':date_receive},{'_id':False})) # 게시판에서 등록되는 정보는 제목 userid 내용 작성시간 으로 서로 한번의 검색으로 한가지의 row만 나오는건 시간과 제목일것이라 판단
+    ##혹시 db에 저장을 할때 각자의 정보에 번호를 추가 하여 쓴다면 더욱 편리한가? 라는 생각을 나중에함.. -> 동시 접속자가 같은 시간에 글을 남긴다면? db설계를 위한 공부?
+    return jsonify({'post': post})
 
 
 # 주문 목록보기(Read) API
+
 @app.route('/api/post', methods=['GET'])
 def view_post():
     posts = list(db.posting.find({},{'_id':False}))
@@ -109,7 +132,7 @@ def make_post():
         'title': title_receive,
         'content': content_receive,
         'name': name_receive,
-        'date': date_receive[8:10] + '일 ' + date_receive[16:18] + '시 ' + date_receive[19:21] + '분'
+        'date': date_receive[8:10] + '일 ' + date_receive[16:18] + '시 ' + date_receive[19:21] + '분' #date()로 받아오는 시간은 년 월 일 시 분 초 +a 로 데이터가 넘어오기때문에 필요한 부분만 뽑아오기
     }
 
     db.posting.insert_one(doc)
