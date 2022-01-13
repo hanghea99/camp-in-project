@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,7 +17,8 @@
     <!-- 구글폰트 -->
     <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
+
+
 
     <meta
             name="viewport"
@@ -36,6 +37,9 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <script defer="defer" src="../static/js/main.js"></script>
+
 
     <!--google Fonts add-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -45,8 +49,9 @@
 
     <!--Font awesome 추가-->
     <script src="https://kit.fontawesome.com/b46111274b.js" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+
 
     <title>게시판</title>
 
@@ -54,6 +59,7 @@
         $(document).ready(function () {
             showPost();
         });
+
 
         function openClose() {
             if ($("#postbox").css("display") == "block") {
@@ -65,17 +71,18 @@
             }
         }
 
-        function makePost() {
+        function makePost(user_name) {
+            console.log("1")
             let title = $('#post-title').val()
             let content = $('#post-content').val()
             {#let name = $('#name').val()#}
-            let name = 'userid'
+            let name = user_name
             let date = Date()
-            console.log(date.month)
+            console.log(user_name)
             $.ajax({
                 type: "POST",
                 url: "/api/post",
-                data: {title_give: title, content_give: content, name_give: name,date_give :date},
+                data: {title_give: title, content_give: content, name_give: name, date_give: date},
                 success: function (response) {
                     alert(response["msg"]);
                     window.location.reload();
@@ -94,11 +101,10 @@
                         let name = posts[i]['name']
                         let title = posts[i]['title']
                         let date = posts[i]['date']
-                        let temp_url = "posting/posting2/"+title
-                        console.log(temp_url)
+
+
                         let temp_html = `<tr>
-                                                <td style = "cursor:pointer;" onClick = " location.href=temp_url " onMouseOver = " window.status = 'posting/posting2' " onMouseOut = " window.status = '' "
-                       >${title}</td>
+                                                <td style = "cursor:pointer;" class = "comment "onClick = "detailPosting('${title}','${date}'); ">${title}</td>
                                                 <td>${name}</td>
                                                 <td>${date}</td>
 
@@ -112,36 +118,57 @@
                 }
             })
         }
+        function failPost(){
+            alert('로그인해주세요')
+        }
+
+        function detailPosting(title, date) {
+            console.log(title, date)
+
+            $.ajax({
+                type: "GET",
+                url: "/api/post2",
+                data: {title_give: title, date_give: date},
+                success: function (response) {
+                    let post = response['post'][0]
+                    post = (JSON.stringify(post))
+
+
+                    window.location.href = `posting/posting2/${post}`
+
+                }
+            })
+        }
+
     </script>
 </head>
 <body>
-
-<section>
-<nav id="navbar">
+<nav id="navbar" class="pl-4 pr-2">
     <div class="navbar__logo">
-        <i class="fas fa-campground"></i>
-        <a href="#">CAMP IN</a>
+        <a href="/" class="nav__brand">
+            <i class="fas fa-campground mr-2"></i>
+            CAMP IN
+        </a>
     </div>
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link active" href="/">메인</a>
+            <a class="nav-link navbar__menu__item" href="/">메인</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="posting">게시판</a>
+            <a class="nav-link navbar__menu__item" href="posting">게시판</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="#">로그인</a>
+            <a class="nav-link navbar__menu__item" href="login">로그인</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="#">회원가입</a>
+            <a class="nav-link navbar__menu__item">회원가입</a>
         </li>
     </ul>
-
 </nav>
-</section>
-<section id="banner1" ></section>
-<section id="post-box" >
-    <div class = "posting_box banner_title jumbotron text-center mb-0">
+
+<section id="banner1"></section>
+<section id="post-box">
+    <div class="posting_box banner_title jumbotron  mb-0">
         <table class="table wrap">
             <thead>
             <tr>
@@ -157,7 +184,7 @@
         <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">게시글쓰기
         </button>
     </div>
-    <div id="postbox" style="display:none" class = "wrap">
+    <div id="postbox" style="display:none" class="wrap">
         <div class="form-group ">
             <label for="post-title">게시판 제목</label>
             <input id="post-title" class="form-control" placeholder="">
@@ -168,10 +195,42 @@
             <textarea id="post-content" class="form-control" rows="2"></textarea>
         </div>
 
-        <button type="button" class="btn btn-primary" onclick="makePost()">게시글 올리기</button>
+        <button type="button" class="btn btn-primary" onclick={% if member %}makePost('{{user_info.username}}'){% else %}failPost(){% endif %} }>게시글 올리기 </button>
     </div>
 </section>
+ <footer class="bg-dark text-center text-white">
+            <!-- Grid container -->
+            <div class="container p-4  pb-0">
+                <!-- Section: Social media -->
+                <section class="">
+                    <p class="d-flex justify-content-center align-items-center mt-3">
+                        <span class="me-3 mr-3">Register for free
+                        </span>
+                        <button type="button" class="mr-3 btn btn-outline-light btn-rounded" onclick="login();">
+                            Sign up!
+                        </button>
 
+                        <!-- Github -->
+                        <a
+                            class="btn btn-floating m-1 btn-outline-light"
+                            style="background-color: #333333;"
+                            href="https://github.com/hanghea99/camp-in-project"
+                            target="_blank"
+                            role="button">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </p>
+                </section>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                항해99 14조 :
+                <a class="text-white" href="https://mdbootstrap.com/">CAMP IN</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
 
 </body>
+
 </html>

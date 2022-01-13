@@ -98,6 +98,63 @@
                 </select>
             </div>
 
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link navbar__menu__item" href="/">메인</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar__menu__item" href="posting">게시판</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar__menu__item" href="login">로그인</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar__menu__item">회원가입</a>
+                </li>
+            </ul>
+        </nav>
+
+        <section id="banner">
+            <div class="banner_title jumbotron text-center mb-0">
+                <h1>GO CAMPING</h1>
+                {% if member %}
+                    <p>안녕하세요.
+                        {{ user_info.profile_name }}님, 여기서 캠핑을 어떨까요?</p>
+                {% else %}
+                    <p>목적지에 닿아야 행복해 지는 것이 아니라 캠핑을 하는 과정에서 행복을 느낀다.</p>
+                {% endif %}
+            </div>
+        </section>
+
+        <section id="search">
+            <div class="search__box item-order d-flex">
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="text-white bg-dark input-group-text">지역</label>
+                        <select class="mr-3 custom-select border-right rounded-right" id="post-area">
+                            <option value="" selected="selected">지역을 선택하세요.</option>
+                            <option value="" >전체</option>
+                            <option value="경기도">경기도</option>
+                            <option value="강원도">강원도</option>
+                            <option value="충청북도">충청북도</option>
+                            <option value="충청남도">충청남도</option>
+                            <option value="전라북도">전라북도</option>
+                            <option value="전라남도">전라남도</option>
+                            <option value="경상북도">경상북도</option>
+                            <option value="경상남도">경상남도</option>
+                            <option value="제주도">제주도</option>
+                        </select>
+                    </div>
+
+                    <div class="mr-3">
+                        <input id="post-search" type="text" class="input__box form-control" placeholder="Search" onkeypress="if(event.keyCode==13){searchBtn();}" >
+                    </div>
+                    <button onclick="searchBtn();" type="button" class="bg-white btn ">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
             <div class="mr-3">
                 <input id="post-search" type="text" class="input__box form-control" placeholder="Search"
                        onkeypress="if(event.keyCode==13){searchBtn();}">
