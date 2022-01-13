@@ -44,29 +44,31 @@
     </head>
 
     <body>
+<nav id="navbar" class="pl-4 pr-2">
+    <div class="navbar_box">
+        <div class="navbar__logo">
+            <a href="/" class="nav__brand">
+                <i class="fas fa-campground mr-2"></i>CAMP IN</a>
+        </div>
 
-        <nav id="navbar" class="pl-4 pr-2">
-            <div class="navbar__logo">
-                <a href="/" class="nav__brand">
-                    <i class="fas fa-campground mr-2"></i>CAMP IN</a>
-            </div>
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link navbar__menu__item" href="/">메인</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar__menu__item" href="posting">게시판</a>
-                </li>
-                    <li class="nav-item">
-                        {% if member %}
-                        <a class="nav-link navbar__menu__item" href="#" onclick="cookieRemove()">logout</a>
-                        {% else %}
-                        <a class="nav-link navbar__menu__item" href="login">sign with us!</a>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link navbar__menu__item" href="/">메인</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar__menu__item" href="posting">게시판</a>
+            </li>
+            <li class="nav-item">
+                {% if member %}
+                <a class="nav-link navbar__menu__item" href="#" onclick="cookieRemove()">logout</a>
+                {% else %}
+                <a class="nav-link navbar__menu__item" href="login">sign with us!</a>
 
-                        {% endif %}
-                    </li>
-            </ul>
-        </nav>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</nav>
 
         <section id="detail__banner">
             <div class="detail__title jumbotron text-center mb-0">
