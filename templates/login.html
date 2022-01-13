@@ -86,21 +86,32 @@
 </head>
 <body>
 <section>
-    <nav id="navbar">
-        <div class="navbar__logo">
-            <i class="fas fa-campground"></i>
-            <a href="/">CAMP IN</a>
+    <nav id="navbar" class="pl-4 pr-2">
+        <div class="navbar_box">
+            <div class="navbar__logo">
+                <a href="/" class="nav__brand">
+                    <i class="fas fa-campground mr-2"></i>CAMP IN</a>
+            </div>
+    
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link navbar__menu__item" href="/">메인</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar__menu__item" href="posting">게시판</a>
+                </li>
+                <li class="nav-item">
+                    {% if member %}
+                    <a class="nav-link navbar__menu__item" href="#" onclick="cookieRemove()">logout</a>
+                    {% else %}
+                    <a class="nav-link navbar__menu__item" href="login">sign with us!</a>
+    
+                    {% endif %}
+                </li>
+            </ul>
         </div>
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="/">메인</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="posting">게시판</a>
-            </li>
-        </ul>
-
     </nav>
+
 </section>
 <section id="banner1"></section>
 <section class="section">

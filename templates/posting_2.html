@@ -45,7 +45,6 @@
     <!--Font awesome 추가-->
     <script src="https://kit.fontawesome.com/b46111274b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="../../static/css/style.css">
-
     <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
     <script defer="defer" src="../../static/js/main.js"></script>
 
@@ -54,28 +53,32 @@
 
 </head>
 <body>
-<nav id="navbar" class="pl-4 pr-2">
-    <div class="navbar__logo">
-        <a href="/" class="nav__brand">
-            <i class="fas fa-campground mr-2"></i>
-            CAMP IN
-        </a>
-    </div>
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link navbar__menu__item" href="/">메인</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link navbar__menu__item" href="/posting">게시판</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link navbar__menu__item" href="/login">로그인</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link navbar__menu__item">회원가입</a>
-        </li>
-    </ul>
-</nav>
+    <nav id="navbar" class="pl-4 pr-2">
+        <div class="navbar_box">
+            <div class="navbar__logo">
+                <a href="/" class="nav__brand">
+                    <i class="fas fa-campground mr-2"></i>CAMP IN</a>
+            </div>
+    
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link navbar__menu__item" href="/">메인</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar__menu__item" href="/posting">게시판</a>
+                </li>
+                <li class="nav-item">
+                    {% if member %}
+                    <a class="nav-link navbar__menu__item" href="#" onclick="cookieRemove()">logout</a>
+                    {% else %}
+                    <a class="nav-link navbar__menu__item" href="login">sign with us!</a>
+    
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </nav>
+
 
 <section id="banner1">
 </section>

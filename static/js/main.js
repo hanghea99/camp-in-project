@@ -1,37 +1,35 @@
-$(document).ready(function () {
-});
+$(document).ready(function () {});
 
 function searchBtn() {
-    $("#cards-box").empty();
+  $("#cards-box").empty();
 
-    let area_data = $("#post-area").val();
-    let search_data = $("#post-search").val();
+  let area_data = $("#post-area").val();
+  let search_data = $("#post-search").val();
 
-    $.ajax({
-        type: "GET",
-        url: `/search?area_give=${area_data}&search_give=${search_data}`,
-        data: {},
-        success: function (response) {
-            let list = response["documents"];
-            let loop_len = list.length;
-            for (let i = 0; i < loop_len; i++) {
-                let id = list[i]["id"];
-                let area = list[i]["area"];
-                let title = list[i]["title"];
-                let comment = list[i]["comment"];
-                let dese = list[i]["dese"];
-                let camp_env = list[i]["camp_env"];
-                let camp_type = list[i]["camp_type"];
-                let views = list[i]["views"];
-                let address = list[i]["address"];
-                let img = list[i]["img"];
-                let url = list[i]["url"];
-
+  $.ajax({
+    type: "GET",
+    url: `/search?area_give=${area_data}&search_give=${search_data}`,
+    data: {},
+    success: function (response) {
+      let list = response["documents"];
+      let loop_len = list.length;
+      for (let i = 0; i < loop_len; i++) {
+        let id = list[i]["id"];
+        let area = list[i]["area"];
+        let title = list[i]["title"];
+        let comment = list[i]["comment"];
+        let dese = list[i]["dese"];
+        let camp_env = list[i]["camp_env"];
+        let camp_type = list[i]["camp_type"];
+        let views = list[i]["views"];
+        let address = list[i]["address"];
+        let img = list[i]["img"];
+        let url = list[i]["url"];
 
         if (img === "https://www.gocamping.or.kr/img/2018/layout/noimg.jpg")
           img =
             "https://static.wixstatic.com/media/fce6e3_bd3fa7fa08a24f8cb445b2432d18738c~mv2.jpg/v1/fill/w_750,h_428,al_c,q_90/fce6e3_bd3fa7fa08a24f8cb445b2432d18738c~mv2.jpg";
-        let temp_html = `          <div class="mb-4 col-sm-4">
+        let temp_html = `          <div class="mb-4 col-md-4">
 
                             <div class="camp__card">
                                 <a href="/detail/${id}" target="_blank">
@@ -46,14 +44,14 @@ function searchBtn() {
                             </div>
                         </div>`;
 
-                $("#cards-box").append(temp_html);
-            }
-        },
-    });
+        $("#cards-box").append(temp_html);
+      }
+    },
+  });
 }
 
 function login() {
-    window.location.href = "/login";
+  window.location.href = "/login";
 }
 
 function increaseView() {
@@ -75,33 +73,29 @@ function increaseView() {
 const navbar = document.querySelector("#navbar");
 const navbarHeight = navbar.getBoundingClientRect().height;
 document.addEventListener("scroll", () => {
-    if (window.scrollY > navbarHeight) {
-        navbar.classList.add("navbar--dark");
-    } else {
-        navbar.classList.remove("navbar--dark");
-    }
+  if (window.scrollY > navbarHeight) {
+    navbar.classList.add("navbar--dark");
+  } else {
+    navbar.classList.remove("navbar--dark");
+  }
 });
-document.addEventListener("scroll", () => {
-});
-
+document.addEventListener("scroll", () => {});
 
 //로그아웃
 function cookieRemove() {
+  // 변수를 선언한다.
+  var date = new Date();
+  date.setDate(date.getDate() - 1);
 
-// 변수를 선언한다.
-    var date = new Date();
-    date.setDate(date.getDate() - 1);
+  var willCookie = "";
+  willCookie += "mytoken=Value;";
+  willCookie += "Expires=" + date.toUTCString();
 
-    var willCookie = "";
-    willCookie += "mytoken=Value;";
-    willCookie += "Expires=" + date.toUTCString();
+  // 쿠키를 집어넣는다.
+  document.cookie = willCookie;
 
-// 쿠키를 집어넣는다.
-    document.cookie = willCookie;
+  // 출력한다.
+  alert("로그아웃되었습니다.");
 
-// 출력한다.
-    alert("로그아웃되었습니다.");
-
-    window.location.replace("/")
-
+  window.location.replace("/");
 }

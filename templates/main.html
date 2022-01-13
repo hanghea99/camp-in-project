@@ -33,6 +33,8 @@
 
         <!-- JS, CSS 추가 -->
         <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/detail.css">
+
         <script defer="defer" src="../static/js/main.js"></script>
 
         <!-- 아이콘 -->
@@ -120,7 +122,7 @@
                 <div class="card__container">
                     <div id="cards-box" class="row">
                         {% for list in all_list %}
-                            <div class="mb-4 col-sm-4">
+                            <div class="mb-4 col-md-4">
                                 <div class="camp__card">
                                     <a href="/detail/{{list.id}}" target="_blank">
                                         {% if list.img == "https://www.gocamping.or.kr/img/2018/layout/noimg.jpg" %}
