@@ -100,8 +100,15 @@ def posting_home2(post):
     title = post['title']
     date = post['date']
     content = post['content']
+    
+    token_receive = request.cookies.get('mytoken') # 토큰을 받았다면
+    member=True
+    if token_receive is None:
+        member=False
+    else: 
+        member=True
+    return render_template('posting_2.html',name=name,title = title, date = date, content=content,member=member) #jinja2 로 데이터를 넘겨줌
 
-    return render_template('posting_2.html',name=name,title = title, date = date, content=content) #jinja2 로 데이터를 넘겨줌
 
 @app.route('/api/post2', methods=['GET'])  #db에서 post정보를 가지고 오기위한 API
 def posting2():

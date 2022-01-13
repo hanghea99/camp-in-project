@@ -1,195 +1,251 @@
 <!doctype html>
 <html lang="en">
-<head>
+    <head>
 
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-
-    <!-- Webpage Title -->
-    <title>Log In</title>
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bulma CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <!-- Font Awesome CSS -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <!-- JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <script src="../static/js/login.js"></script>
-    <!-- 구글폰트 -->
-    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
-
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link
+        <!-- Bootstrap CSS -->
+        <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
             crossorigin="anonymous">
 
-    <!--google Fonts add-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
+        <!-- Webpage Title -->
+        <title>Log In</title>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bulma CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+        <!-- Font Awesome CSS -->
+        <link
+            href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet">
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+        <script src="../static/js/login.js"></script>
+        <!-- 구글폰트 -->
+        <link
+            href="https://fonts.googleapis.com/css?family=Stylish&display=swap"
+            rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="../static/style.css">
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+
+        <!--google Fonts add-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
             rel="stylesheet"/>
 
-    <!--Font awesome 추가-->
-    <script src="https://kit.fontawesome.com/b46111274b.js" crossorigin="anonymous"></script>
+        <!--Font awesome 추가-->
+        <script src="https://kit.fontawesome.com/b46111274b.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
-
-
-    <style>
+        <link rel="stylesheet" type="text/css" href="../static/css/style.css">
 
 
-        .button.is-sparta {
-            background-color: #343a40;
-            border-color: #343a40;
-            color: #fff !important;
-        }
-        .button.is-sparta.is-outlined {
-            background-color: #343a40;
-            border-color: #343a40;
-            color: #fff !important;
-        }
-        .help {
-            color: gray;
-        }
+        <style>
 
-        body {
-            background-color: whitesmoke;
-            min-height: 100vh;
-        }
+            .button.is-sparta {
+                background-color: #343a40;
+                border-color: #343a40;
+                color: #fff !important;
+            }
+            .button.is-sparta.is-outlined {
+                background-color: #343a40;
+                border-color: #343a40;
+                color: #fff !important;
+            }
+            .help {
+                color: gray;
+            }
 
-        .section {
-            padding: 1rem 1.5rem;
-            max-width: 750px;
-            margin: auto;
-        }
-    </style>
+            body {
+                background-color: whitesmoke;
+                min-height: 100vh;
+            }
 
-</head>
-<body>
-<section>
-    <nav id="navbar" class="pl-4 pr-2">
-        <div class="navbar_box">
-            <div class="navbar__logo">
-                <a href="/" class="nav__brand">
-                    <i class="fas fa-campground mr-2"></i>CAMP IN</a>
-            </div>
-    
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link navbar__menu__item" href="/">메인</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar__menu__item" href="posting">게시판</a>
-                </li>
-                <li class="nav-item">
-                    {% if member %}
-                    <a class="nav-link navbar__menu__item" href="#" onclick="cookieRemove()">logout</a>
-                    {% else %}
-                    <a class="nav-link navbar__menu__item" href="login">sign with us!</a>
-    
-                    {% endif %}
-                </li>
-            </ul>
-        </div>
-    </nav>
+            .section {
+                padding: 1rem 1.5rem;
+                max-width: 750px;
+                margin: auto;
+            }
+            footer {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+        </style>
 
-</section>
-<section id="banner1"></section>
-<section class="section">
-    <div class="container">
-        <div class="box" style="max-width: 480px;margin:auto">
-            <article class="media">
-                <div class="media-content">
-                    <div class="content">
-                        <div class="field has-addons">
-                            <div class="control has-icons-left" style="width:100%">
-                                <input id="input-username" class="input" type="text" placeholder="아이디">
-                                <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
-                            </div>
-                            <div id="btn-check-dup" class="control is-hidden">
-                                <button class="button is-sparta" onclick="check_dup()">중복확인</button>
-                            </div>
-
-                        </div>
-                        <p id="help-id" class="help is-hidden">아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력 가능합니다.</p>
-                        <p id="help-id-login" class="help is-danger"></p>
-
-                        <div class="field">
-                            <div class="control has-icons-left">
-                                <input id="input-password" class="input" type="password" placeholder="비밀번호">
-                                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
-                            </div>
-                            <p id="help-password" class="help is-hidden">영문과 숫자 조합의 8-20자의 비밀번호를 설정해주세요. 특수문자(!@#$%^&*)도
-                                사용
-                                가능합니다.</p>
-                        </div>
-
-
-                    </div>
-                    <div id="div-sign-in-or-up" class="has-text-centered">
-                        <nav class="level is-mobile">
-                            <button class="level-item button is-sparta" onclick="sign_in()">
-                                로그인
-                            </button>
-
-                        </nav>
-                        <hr>
-                        <h4 class="mb-3">아직 회원이 아니라면</h4>
-                        <nav class="level is-mobile">
-
-                            <button class="level-item button is-sparta is-outlined"
-                                    onclick="toggle_sign_up()">
-                                회원가입하기
-                            </button>
-                        </nav>
+    </head>
+    <body>
+        <section>
+            <nav id="navbar" class="pl-4 pr-2">
+                <div class="navbar_box">
+                    <div class="navbar__logo">
+                        <a href="/" class="nav__brand">
+                            <i class="fas fa-campground mr-2"></i>CAMP IN</a>
                     </div>
 
-                    <div id="sign-up-box" class="is-hidden">
-                        <div class="mb-5">
-                            <div class="field">
-                                <div class="control has-icons-left" style="width:100%">
-                                    <input id="input-password2" class="input" type="password"
-                                           placeholder="비밀번호 재입력">
-                                    <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
-                                </div>
-                                <p id="help-password2" class="help is-hidden">비밀번호를 다시 한 번 입력해주세요.</p>
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link navbar__menu__item" href="/">메인</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar__menu__item" href="posting">게시판</a>
+                        </li>
+                        <li class="nav-item">
+                            {% if member %}
+                                <a class="nav-link navbar__menu__item" href="#" onclick="cookieRemove()">logout</a>
+                            {% else %}
+                                <a class="nav-link navbar__menu__item" href="login">sign with us!</a>
 
-                            </div>
-                        </div>
-                        <nav class="level is-mobile">
-                            <button class="level-item button is-sparta" onclick="sign_up()">
-                                회원가입
-                            </button>
-                            <button class="level-item button is-sparta is-outlined" onclick="toggle_sign_up()">
-                                취소
-                            </button>
-                        </nav>
-                    </div>
-
-
+                            {% endif %}
+                        </li>
+                    </ul>
                 </div>
-            </article>
-        </div>
+            </nav>
 
-    </div>
-</section>
+        </section>
+        <section id="banner1"></section>
+        <section class="section">
+            <div class="container">
+                <div class="box" style="max-width: 480px;margin:auto">
+                    <article class="media">
+                        <div class="media-content">
+                            <div class="content">
+                                <div class="field has-addons">
+                                    <div class="control has-icons-left" style="width:100%">
+                                        <input id="input-username" class="input" type="text" placeholder="아이디">
+                                        <span class="icon is-small is-left">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <div id="btn-check-dup" class="control is-hidden">
+                                        <button class="button is-sparta" onclick="check_dup()">중복확인</button>
+                                    </div>
 
-</body>
+                                </div>
+                                <p id="help-id" class="help is-hidden">아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력 가능합니다.</p>
+                                <p id="help-id-login" class="help is-danger"></p>
+
+                                <div class="field">
+                                    <div class="control has-icons-left">
+                                        <input id="input-password" class="input" type="password" placeholder="비밀번호">
+                                        <span class="icon is-small is-left">
+                                            <i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                    <p id="help-password" class="help is-hidden">영문과 숫자 조합의 8-20자의 비밀번호를 설정해주세요. 특수문자(!@#$%^&*)도 사용 가능합니다.</p>
+                                </div>
+
+                            </div>
+                            <div id="div-sign-in-or-up" class="has-text-centered">
+                                <nav class="level is-mobile">
+                                    <button class="level-item button is-sparta" onclick="sign_in()">
+                                        로그인
+                                    </button>
+
+                                </nav>
+                                <hr>
+                                <h4 class="mb-3">아직 회원이 아니라면</h4>
+                                <nav class="level is-mobile">
+
+                                    <button
+                                        class="level-item button is-sparta is-outlined"
+                                        onclick="toggle_sign_up()">
+                                        회원가입하기
+                                    </button>
+                                </nav>
+                            </div>
+
+                            <div id="sign-up-box" class="is-hidden">
+                                <div class="mb-5">
+                                    <div class="field">
+                                        <div class="control has-icons-left" style="width:100%">
+                                            <input
+                                                id="input-password2"
+                                                class="input"
+                                                type="password"
+                                                placeholder="비밀번호 재입력">
+                                            <span class="icon is-small is-left">
+                                                <i class="fa fa-lock"></i>
+                                            </span>
+                                        </div>
+                                        <p id="help-password2" class="help is-hidden">비밀번호를 다시 한 번 입력해주세요.</p>
+
+                                    </div>
+                                </div>
+                                <nav class="level is-mobile">
+                                    <button class="level-item button is-sparta" onclick="sign_up()">
+                                        회원가입
+                                    </button>
+                                    <button
+                                        class="level-item button is-sparta is-outlined"
+                                        onclick="toggle_sign_up()">
+                                        취소
+                                    </button>
+                                </nav>
+                            </div>
+
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+        <footer class="bg-dark text-center text-white">
+            <!-- Grid container -->
+            <div class="container p-4  pb-0">
+                <!-- Section: Social media -->
+                <section class="">
+                    <p class="d-flex justify-content-center align-items-center mt-3">
+                        <span class="me-3 mr-3">Register for free
+                        </span>
+                        <button
+                            type="button"
+                            class="mr-3 btn btn-outline-light btn-rounded"
+                            onclick="login();">
+                            Sign up!
+                        </button>
+
+                        <!-- Github -->
+                        <a
+                            class="btn btn-floating m-1 btn-outline-light"
+                            style="background-color: #333333;"
+                            href="https://github.com/hanghea99/camp-in-project"
+                            target="_blank"
+                            role="button">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </p>
+                </section>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                항해99 14조 :
+                <a class="text-white" href="https://mdbootstrap.com/">CAMP IN</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+    </body>
 </html>
