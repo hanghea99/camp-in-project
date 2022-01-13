@@ -32,6 +32,7 @@ dblist=client.cplists
 def home():
     token_receive = request.cookies.get('mytoken')
     print(token_receive)
+
     all_list = list(dblist.cplist.aggregate([{"$sample": {"size": 27}}, {"$unset": "_id"}]))
 
     try:
@@ -42,7 +43,7 @@ def home():
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
-        return render_template('main.html',all_list=all_list ,member = False)
+        return render_template('main.html',all_list=all_list , member = False)
 
 
 
@@ -68,12 +69,7 @@ def detail_page(id):
     new_views = current_views + 1
     dblist.cplist.update_one({"id": id}, {"$set": {"views": new_views}})
     target_row = dblist.cplist.find_one({'id': id},{'_id': False})
-    return render_template('detail.html',target_row=target_row)
-
-
-
-
-
+    return render_template('detail.html', target_row=target_row) 
 
 
 ##로그인 화면
@@ -101,13 +97,8 @@ def posting_home2(post):
     date = post['date']
     content = post['content']
     
-    token_receive = request.cookies.get('mytoken') # 토큰을 받았다면
-    member=True
-    if token_receive is None:
-        member=False
-    else: 
-        member=True
-    return render_template('posting_2.html',name=name,title = title, date = date, content=content,member=member) #jinja2 로 데이터를 넘겨줌
+ 
+    return render_template('posting_2.html',name=name,title = title, date = date, content=content) #jinja2 로 데이터를 넘겨줌
 
 
 @app.route('/api/post2', methods=['GET'])  #db에서 post정보를 가지고 오기위한 API

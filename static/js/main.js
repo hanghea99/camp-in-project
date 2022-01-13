@@ -79,7 +79,6 @@ document.addEventListener("scroll", () => {
     navbar.classList.remove("navbar--dark");
   }
 });
-document.addEventListener("scroll", () => {});
 
 //로그아웃
 function cookieRemove() {
@@ -97,5 +96,6 @@ function cookieRemove() {
   // 출력한다.
   alert("로그아웃되었습니다.");
 
+  // window.location.reload("/");
   window.location.replace("/");
 }

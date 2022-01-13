@@ -38,6 +38,7 @@
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
     <script defer="defer" src="../static/js/main.js"></script>
+        <script src="../static/js/login.js"></script>
 
 
     <!--google Fonts add-->
@@ -154,13 +155,13 @@
                 <a class="nav-link navbar__menu__item" href="/">메인</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link navbar__menu__item" href="posting">게시판</a>
+                <a class="nav-link navbar__menu__item" href="/posting">게시판</a>
             </li>
             <li class="nav-item">
                 {% if member %}
                 <a class="nav-link navbar__menu__item" href="#" onclick="cookieRemove()">logout</a>
                 {% else %}
-                <a class="nav-link navbar__menu__item" href="login">sign with us!</a>
+                <a class="nav-link navbar__menu__item" href="/login">sign with us!</a>
 
                 {% endif %}
             </li>
