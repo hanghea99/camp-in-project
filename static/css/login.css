@@ -1,13 +1,13 @@
 
         .button.is-sparta {
-            background-color: RGBA(64, 110, 115, 1);
-            border-color: RGBA(64, 110, 115, 1);
+            background-color: RGBA(255,255,255, 1);
+            border-color: RGBA(255,255,255, 1);
             color: #fff !important;
         }
 
         .button.is-sparta.is-outlined {
-            background-color: RGBA(64, 110, 115, 1);
-            border-color: RGBA(64, 110, 115, 1);
+            background-color: RGBA(255,255,255, 1);
+            border-color: RGBA(255,255,255, 1);
             color: white !important;
         }
 

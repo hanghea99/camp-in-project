@@ -57,12 +57,14 @@
                 <li class="nav-item">
                     <a class="nav-link navbar__menu__item" href="posting">게시판</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar__menu__item" href="login">로그인</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar__menu__item">회원가입</a>
-                </li>
+                    <li class="nav-item">
+                        {% if member %}
+                        <a class="nav-link navbar__menu__item" href="#" onclick="cookieRemove()">logout</a>
+                        {% else %}
+                        <a class="nav-link navbar__menu__item" href="login">sign with us!</a>
+
+                        {% endif %}
+                    </li>
             </ul>
         </nav>
 
