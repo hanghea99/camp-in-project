@@ -29,6 +29,7 @@ dblist=client.cplists
 @app.route('/')
 def home():
     token_receive = request.cookies.get('mytoken')
+    print(token_receive)
     all_list = list(dblist.cplist.aggregate([{"$sample": {"size": 27}}, {"$unset": "_id"}]))
 
     try:
@@ -60,8 +61,17 @@ def get_list():
 # detail페이지
 @app.route('/detail/<id>')
 def detail_page(id):
-    print(id)
-    return render_template('main.html')
+    id=int(id)
+    target = dblist.cplist.find_one({'id': id},{'_id': False})
+    current_views = target["views"]
+    new_views = current_views + 1
+    dblist.cplist.update_one({"id": id}, {"$set": {"views": new_views}})
+    target_row = dblist.cplist.find_one({'id': id},{'_id': False})
+    return render_template('detail.html',target_row=target_row)
+
+
+
+
 
 
 
@@ -89,6 +99,7 @@ def view_post():
 # 주문 목록보기(Read) API
 @app.route('/api/post', methods=['POST'])
 def make_post():
+
     title_receive = request.form['title_give']
     content_receive = request.form['content_give']
     name_receive = request.form['name_give']
@@ -109,6 +120,8 @@ def make_post():
 # def login():
 #     msg = request.args.get("msg")
 #     return render_template('login.html', msg=msg)
+
+
 
 @app.route('/sign_in', methods=['POST'])
 def sign_in():
