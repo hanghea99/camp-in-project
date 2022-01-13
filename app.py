@@ -95,13 +95,13 @@ def posting_home():
 
 @app.route('/posting/posting2/<post>') #게시판내에 글 하나를 정해서 보기 위한 페이지를 위한 라우트
 def posting_home2(post):
-    post = json.loads(post)  #<post>가 json문ㄱ이랑자열로 변형 되서 넘어와 dict형태로 바꿔주기위해 json import해줌
+    post = json.loads(post)  #<post>가 json문자열로 변형 되서 넘어와 dict형태로 바꿔주기위해 json import해줌
     name = post['name']
     title = post['title']
     date = post['date']
     content = post['content']
 
-    return render_template('posting_2.html',name=name,title = title, date = date, content=content)
+    return render_template('posting_2.html',name=name,title = title, date = date, content=content) #jinja2 로 데이터를 넘겨줌
 
 @app.route('/api/post2', methods=['GET'])  #db에서 post정보를 가지고 오기위한 API
 def posting2():
@@ -112,14 +112,14 @@ def posting2():
     return jsonify({'post': post})
 
 
-# 주문 목록보기(Read) API
+# 게시판 목록보기(Read) API
 
 @app.route('/api/post', methods=['GET'])
 def view_post():
     posts = list(db.posting.find({},{'_id':False}))
     return jsonify({'all_posts': posts})
 
-# 주문 목록보기(Read) API
+# 게시판 글 쓰기(Write) API
 @app.route('/api/post', methods=['POST'])
 def make_post():
 
@@ -135,7 +135,7 @@ def make_post():
         'date': date_receive[8:10] + '일 ' + date_receive[16:18] + '시 ' + date_receive[19:21] + '분' #date()로 받아오는 시간은 년 월 일 시 분 초 +a 로 데이터가 넘어오기때문에 필요한 부분만 뽑아오기
     }
 
-    db.posting.insert_one(doc)
+    db.posting.insert_one(doc) # db에 저장
     return jsonify({'msg': '저장완료~!'})
 
 #로그인 API
