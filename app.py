@@ -68,7 +68,14 @@ def detail_page(id):
     new_views = current_views + 1
     db.cplist.update_one({"id": id}, {"$set": {"views": new_views}})
     target_row = db.cplist.find_one({'id': id},{'_id': False})
-    return render_template('detail.html', target_row=target_row,member=True) 
+    try:
+        token_receive = request.cookies.get('mytoken') # 토큰을 받았다면
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]})
+        return render_template('detail.html', target_row=target_row,member=True) 
+
+    except jwt.exceptions.DecodeError:
+        return render_template('detail.html', target_row=target_row,member=False) 
 
 
 ##로그인 화면
