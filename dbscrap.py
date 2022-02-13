@@ -4,7 +4,7 @@ SECRET_KEY = getattr(settings, 'SECRET_KEY', 'localhost')
 
 from pymongo import MongoClient
 client = MongoClient(SECRET_KEY, 27017)
-db = client.cplists
+db = client.cp
 
 import requests
 from bs4 import BeautifulSoup

@@ -20,7 +20,6 @@ from pymongo import MongoClient
 client = MongoClient(SECRET_KEY, 27017, authSource="admin")
 # client = MongoClient('localhost', 27017)
 db = client.cp
-dblist=client.cplists
 
 
 ## HTML 화면 보여주기
@@ -33,7 +32,7 @@ def home():
     token_receive = request.cookies.get('mytoken')
     print(token_receive)
 
-    all_list = list(dblist.cplist.aggregate([{"$sample": {"size": 27}}, {"$unset": "_id"}]))
+    all_list = list(db.cplist.aggregate([{"$sample": {"size": 27}}, {"$unset": "_id"}]))
 
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
@@ -56,7 +55,7 @@ def get_list():
     print(search_receive)
 
     # 검색 data 추출
-    search_list =  list(dblist.cplist.find({'$and': [ {'area': {"$regex": f"{area_receive}"}} ,{'$or':[ {'title': {"$regex": f"{search_receive}"}},{'comment': {"$regex": f"{search_receive}"}},{'desc': {"$regex": f"{search_receive}"}}]}]},{'_id': False}).sort("views", -1))
+    search_list =  list(db.cplist.find({'$and': [ {'area': {"$regex": f"{area_receive}"}} ,{'$or':[ {'title': {"$regex": f"{search_receive}"}},{'comment': {"$regex": f"{search_receive}"}},{'desc': {"$regex": f"{search_receive}"}}]}]},{'_id': False}).sort("views", -1))
 
     return jsonify({'msg':'sucess',"documents":search_list})
 
@@ -64,12 +63,12 @@ def get_list():
 @app.route('/detail/<id>')
 def detail_page(id):
     id=int(id)
-    target = dblist.cplist.find_one({'id': id},{'_id': False})
+    target = db.cplist.find_one({'id': id},{'_id': False})
     current_views = target["views"]
     new_views = current_views + 1
-    dblist.cplist.update_one({"id": id}, {"$set": {"views": new_views}})
-    target_row = dblist.cplist.find_one({'id': id},{'_id': False})
-    return render_template('detail.html', target_row=target_row) 
+    db.cplist.update_one({"id": id}, {"$set": {"views": new_views}})
+    target_row = db.cplist.find_one({'id': id},{'_id': False})
+    return render_template('detail.html', target_row=target_row,member=True) 
 
 
 ##로그인 화면

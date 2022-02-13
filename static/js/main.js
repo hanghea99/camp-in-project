@@ -86,9 +86,10 @@ function cookieRemove() {
   var date = new Date();
   date.setDate(date.getDate() - 1);
 
+  // document.cookie = `mytoken=; expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/`;
   var willCookie = "";
   willCookie += "mytoken=Value;";
-  willCookie += "Expires=" + date.toUTCString();
+  willCookie += "Expires=" + date.toUTCString() + ";path=/";
 
   // 쿠키를 집어넣는다.
   document.cookie = willCookie;
